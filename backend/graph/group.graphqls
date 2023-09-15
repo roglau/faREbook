@@ -1,0 +1,124 @@
+type Group{
+    id: ID!
+    name: String!
+    privacy: String!
+    profile: String!
+    createdAt: String!
+}
+
+type GroupFiles{
+    id: ID!
+    groupID: String!
+    userID: String!
+    name: String!
+    type: String!
+    url: String!
+    createdAt: String!
+}
+
+type GroupFilesList{
+    files: GroupFiles!
+    uploader: User!
+}
+
+input NewGroupFiles{
+    groupID: String!
+    userID: String!
+    name: String!
+    type: String!
+    url: String!
+}
+
+type GroupPost{
+    id: ID!
+    groupID: String!
+    userID: String!
+    content: String!    
+    createdAt: String!
+    user: User!
+}
+
+input NewGroupPost{
+    groupID: String!
+    userID: String!
+    content: String!    
+}
+
+
+type GroupList{
+    group: Group!
+    members: [User!]!
+    admin: [User!]!
+    posts: [GroupPostList!]!
+    files: [GroupFilesList!]!
+    isAdmin: Boolean!
+    isMember: Boolean!
+    hasJoinRequest: Boolean!
+    hasInvited: Boolean!
+    joinRequest: [User!]!
+}
+
+type GroupPostList{
+  posts: GroupPost!
+  medias: [String!]!
+  comments: [CommentList!]!
+  likes: [User!]!
+}
+
+type GroupMembers{
+    id: ID!
+    groupID: String!
+    userID: String!
+    role: String!
+}
+
+type GroupInvited{
+    id: ID!
+    groupID: String!
+    userID: String!
+}
+
+type GroupJoin{
+    id: ID!
+    groupID: String!
+    userID: String!
+}
+
+type GroupInvites{
+    group: Group!
+    admin: User!
+}
+
+input NewGroup{
+    name: String!
+    privacy: String!
+}
+
+extend type Query{
+    getAllGroup(userID: String!): [GroupList!]!
+    getGroup(groupID: String!, userID:String!): GroupList!
+    getAllGroupUser(userID: String!): [GroupList!]!
+    getAllInvite(userID: String!): [GroupInvites!]!
+    getGroupPost(postID: String!) : GroupPostList!
+    getAllInvites(groupID: String!): [GroupInvited!]! 
+    getAllJoin(groupID:String!): [User!]!
+}
+
+extend type Mutation{
+    createGroup(inputGroup: NewGroup!, userID:String!, invited: [String!]): Group!
+    createGroupMember(groupID: String!,members: String!, role:String!): GroupMembers!
+    createGroupInvited(groupID: String!, invited: String!): GroupInvited!
+    createGroupJoin(groupID: String!, userID: String!): GroupJoin!
+    acceptJoin(groupID: String!, userID: String!): Boolean!
+    deleteJoin(groupID: String!, userID: String!): Boolean!
+    createGroupPost(inputPost: NewGroupPost!, medias: [String!]): GroupPost!
+    acceptInvite(groupID: String!, invited: String!): Boolean!
+    deleteInvite(groupID: String!, invited: String!): Boolean!
+    deleteGroupPost(groupID: String!) : Boolean!
+    createGroupFiles(inputFiles: NewGroupFiles!): GroupFiles!
+    deleteGroupFiles(fileID: String!) : Boolean!
+    promoteMember(memberID: String!, groupID: String!) : Boolean!
+    deleteMember(memberID: String!, groupID:String!) : Boolean!
+    deleteMemberNGroup(memberID: String!, groupID: String!) : Boolean!
+    updateGroupProfile(groupID: String!, profile: String!) : Boolean!
+}

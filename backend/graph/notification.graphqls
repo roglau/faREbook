@@ -1,0 +1,32 @@
+type Notification{
+    id: ID!
+    userID: String!
+    user2ID: String!
+    notif: String!
+    createdAt: String!
+    isRead: Boolean!
+}
+
+input NewNotification{
+    userID: String!
+    user2ID: String!
+    notif: String!
+}
+
+type NotificationList{
+    user2: User!
+    notif: Notification!
+}
+
+type NotifListWCount{
+    notifLists: [NotificationList]!
+    notReadCount: Int!
+}
+
+extend type Query{
+    getAllNotif(userID: String!) : NotifListWCount!
+}
+
+extend type Mutation{
+    createNotif(inputNotif: NewNotification!): Notification!
+}

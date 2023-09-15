@@ -1,0 +1,258 @@
+@import '../theme/theme.css';
+
+.post-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+  }
+
+  .groupD-profile-con{
+    float: left;
+    width: 100%;
+    display: flex;
+    gap : 1em;
+    align-items: center;
+  }
+  
+  .post-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--nav-color);
+    padding: 1em;
+    width: 25em;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    max-height: 30em; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* box-sizing: border-box; */
+    color: var(--text-color);
+  }
+
+  .carousel-slide {
+    display: none;
+    flex: 0 0 100%;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .carousel-slide.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-slide .carousel-img img,
+  .carousel-slide .carousel-vid video {
+    min-width: 60%;
+    max-width: 60%;
+    max-width: 60%;
+    max-height: 60%;
+  }
+  
+
+  .post-dialog-content .close-button{
+    position: relative;
+    z-index: 10;
+    top: 1.5em;
+    right: -46%;
+    color: var(--text-color);
+    border: none;
+    background-color: var(--shadow-color);
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .post-dialog-content .close-button:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  hr{
+    margin: 0.3em;
+    width: 100%;
+    color: var(--text-color);
+  }
+
+  .profile-icon{
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .profile-con{
+    float: left;
+    width: 100%;
+    display: flex;
+    gap : 1em;
+  }
+
+  .post-dialog-content .postText{
+      border: none;
+      background-color: transparent;
+      outline: none;
+      padding: 3%; 
+      font-size: 22px; 
+      width: 100%; 
+      color: var(--text-color);
+  }
+  
+  .carousel-img, .carousel-vid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .other-item-con{
+    border: 1px var(--text-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    padding: 3%;
+    width: 94%;
+    margin: 2%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .icons{
+    font-size: 28px;
+    color: var(--text-color);
+  }
+
+  button{
+    width: 100%;
+    background-color:rgb(7, 123, 205);
+    padding: 3%;
+    color: white;
+    border: none;
+    outline: none;
+    margin-top: 2%;
+  }
+
+.file-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+.file-input {
+  display: none;
+}
+
+.drag-drop-area {
+  border: 2px dashed #ccc;
+  padding: 16px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ... (other styles) */
+/* .file-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 200px; 
+  margin-top: 1em;
+}
+
+.carousel-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+} */
+
+.file-carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.carousel-slide {
+  display: none;
+  flex: 0 0 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.carousel-slide.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-slide img,
+.carousel-slide video {
+  min-width: 50%;
+  max-width: 50%;
+  max-width: 50%;
+  max-height: 50%;
+}
+
+.carousel-nav {
+  position: absolute;
+  z-index: 100;
+  top: 35%;
+  /* transform: translateY(-50%); */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.carousel-nav button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  color: #333; /* Adjust the color as needed */
+  cursor: pointer;
+  outline: none;
+  max-width: 10%;
+}
+
+.delete-icon{
+  position: fixed;
+  top: -7.5%;
+  font-size: 28px;
+  right : 20%;
+}
+
+.privacy-select {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.1em;
+}
+
+.privacy-select select{
+  background-color: var(--nav-color);
+  color: var(--text-color);
+}
+
+.privacy-select label {
+  margin-right: 0.1em;
+}
+
+.privacy-select select {
+  padding: 5px;
+  border: 1px solid var(--shadow-color);
+  border-radius: 4px;
+}

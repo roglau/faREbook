@@ -1,0 +1,43 @@
+type LikeComment{
+    id: ID!
+    commentID: String!
+    userID: String!
+    liked: Boolean!
+}
+
+type ReplyComment{
+    id: ID!
+    commentID: String!
+    userID: String!
+    reply: String!
+    createdAt: String!
+    user: User!
+}
+
+type CommentList{
+    comment: PostComment!
+    likecomments: [User!]!
+    replycomments: [ReplyComment!]!
+}
+
+input NewLikeComment{
+    commentID: String!
+    userID: String!
+    liked: Boolean!
+}
+
+input NewReplyComment{
+    commentID: String!
+    userID: String!
+    reply: String!
+}
+
+extend type Query {
+  getAllLikeComment(id: ID!): [User!]!
+  getAllReplyComment(id: ID!): [ReplyComment!]!
+}
+
+extend type Mutation {
+  createLikeComment(inputLikeComment: NewLikeComment!): LikeComment!
+  createReplyComment(inputReplyComment: NewReplyComment!): ReplyComment!
+}

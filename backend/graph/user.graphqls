@@ -1,0 +1,54 @@
+type User{
+    id: ID!
+    email: String!
+    firstname: String!
+    surname: String!
+    dob: String!
+    gender: String!
+    activated: Boolean!
+    profile: String!
+}
+
+input NewUser{
+    email: String!
+    firstname: String!
+    surname: String!
+    dob: String!
+    gender: String!
+    password: String!
+    activated: Boolean!
+}
+
+type UserNMutual{
+    user: User!
+    mutuals: [User!]!
+    hasFriendRequest: Boolean!
+    hasSentRequest: Boolean!
+}
+
+type UserWRequest{
+    user: User!
+    hasFriendRequest: Boolean!
+    hasSentRequest: Boolean!
+    isFriend: Boolean!
+}
+
+type Query{
+    getUser(id: ID!): User!
+    getAllUser: [User!]!
+    getEmail(email: String!): User!
+    getAllUserName(name:String!, id:String!): [UserWRequest!]!
+    getFriendSuggestions(userID: String!): [UserNMutual!]!
+    getUserWRequest(userID: String!, user2ID: String!): UserWRequest! 
+}
+
+type Mutation{
+    createUser(inputUser: NewUser!): User!
+    updateUser(id: ID!, inputUser: NewUser!): User!
+    deleteUser(id: ID!): User!
+    loginUser(email: String!, password: String!): String!
+    activateUser(id: ID!): String!
+    updatePassword(email: String!, password: String!): String!
+    getUserWToken(token: String!): User!
+    updateProfile(id: String!, profile: String!): String!
+}

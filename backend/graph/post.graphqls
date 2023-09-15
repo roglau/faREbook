@@ -1,0 +1,81 @@
+type Post {
+    id: ID!
+    userID: String!
+    userName: String!
+    content: String!    
+    privacy: String!
+    createdAt: String!
+    user: User!
+}
+
+type PostMedia{
+    id: ID!
+    postID: String!
+    media: String!
+}
+
+type PostList{
+  posts: Post!
+  medias: [String!]!
+  comments: [CommentList!]!
+  likes: [User!]!
+}
+
+type PostComment{
+  id: ID!
+  postID: String!
+  userID: String!
+  comment: String!
+  user: User!
+  createdAt: String!
+}
+
+type PostLike{
+  id: ID!
+  postID: String!
+  userID: String!
+  liked: Boolean!
+}
+
+input NewPostLike{
+  postID: String!
+  userID: String!
+  liked: Boolean!
+}
+
+input NewPostComment{
+  postID: String!
+  userID: String!
+  comment: String!
+}
+
+input NewPostMedia{
+    postID: String!
+    media: String!
+}
+
+input NewPost{
+    userID: String!
+    privacy: String!
+    content: String!
+    userName: String!
+}
+
+extend type Query {
+  getPost(id: ID!): PostList!
+  getAllPost(offset: Int, limit: Int): [PostList!]!
+  getAllPostNoRes: [PostList!]!
+  getAllMediaPost(id: ID!): [String!]!
+  getAllCommentPost(id: ID!): [CommentList!]!
+  getAllLikePost(id: ID!): [User!]!
+  getAllPostUser(userID: ID!): [PostList!]!
+  getAllPostContent(content: String!) : [PostList!]!
+}
+
+extend type Mutation {
+  createPost(inputPost: NewPost!, medias: [String!]!): Post!
+  createPostMedia(inputMedia: NewPostMedia!): PostMedia!
+  createPostComment(inputComment: NewPostComment!): PostComment!
+  createPostLike(inputLike: NewPostLike!): PostLike!
+  deletePost(id: ID!): Post!
+}

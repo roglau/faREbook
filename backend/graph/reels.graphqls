@@ -1,0 +1,29 @@
+type Reels{
+    id: ID!
+    video: String!
+    text: String!
+    userID: String!
+}
+
+input NewReels{
+    video: String!
+    text: String!
+    userID: String!
+}
+
+type ReelsList{
+    reels: Reels
+    user: User!
+    comments: [CommentList!]!
+    likes: [User!]!
+}
+
+extend type Query{
+    getAllReels: [ReelsList!]!
+    getReels(id: ID!): ReelsList!
+    getAllReelsUser(userID: String!): [ReelsList!]!
+}
+
+extend type Mutation{
+    createReels(inputReels: NewReels!): Reels!
+}

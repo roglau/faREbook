@@ -1,0 +1,59 @@
+type Conversations{
+    id: ID!
+    user1ID: ID!
+    user2ID: ID!   
+    createdAt:String! 
+    group: Boolean!
+}
+
+type ConversationDetails{
+    id: ID!
+    conversationID: String!
+    userID: String!
+}
+
+type Messages{
+    id: ID!
+    conversationID: ID!
+    senderID: ID!
+    content:String!
+    createdAt:String!
+    hasMedia:Boolean!
+}
+
+type MsgWMedia{
+    message: Messages!
+    medias: [String!]!
+}
+
+type ConversationsWMsg{
+    conversation: Conversations!
+    messages: [MsgWMedia!]!
+    interlocutor: User
+    interlocutors: [User!]
+}
+
+input NewConversations{
+    user1ID: ID!
+    user2ID: ID!   
+    group: Boolean!
+    users: [String!]!
+}
+
+input NewMessages{
+    conversationID: ID!
+    senderID: ID!
+    content:String!
+    hasMedia:Boolean!
+}
+
+
+extend type Query{
+    getAllConversation(userID: String!): [ConversationsWMsg!]!
+    getConversation(convID: String!, userID:String!): ConversationsWMsg!
+}
+
+extend type Mutation{
+    createConversation(inputConversation: NewConversations!): Boolean!
+    createMessage(inputMessage: NewMessages!, medias: [String!]!): Messages!
+}

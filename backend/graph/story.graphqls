@@ -1,0 +1,29 @@
+type Story{
+    id:ID!
+    userID:String!
+    image:String!
+    text:String!
+    bgColor:String!
+    createdAt:String!
+}
+
+type StoryList{
+    stories:[Story!]!
+    user:User!
+}
+
+input NewStory{
+    userID:String!
+    image:String!
+    text:String!
+    bgColor:String!
+}
+
+extend type Query{
+    getAllStoryUser(userID: ID!): StoryList!
+    getAllStory(userID: String!): [StoryList!]!
+}
+
+extend type Mutation{
+    createStory(inputStory: NewStory!) : Story!
+}

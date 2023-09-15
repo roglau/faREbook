@@ -1,0 +1,122 @@
+@import '../theme/theme.css';
+
+.custom-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    color: var(--text-color);
+  }
+  
+  .custom-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--nav-color);
+    padding: 1em;
+    width: 35em;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    max-height: 30em; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* box-sizing: border-box; */
+  }
+
+  .custom-dialog-content .close-button{
+    position: relative;
+    z-index: 10;
+    top: 1.5em;
+    right: -46%;
+    color: var(--text-color);
+    border: none;
+    background-color: var(--shadow-color);
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .custom-dialog-content .close-button:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  hr{
+    margin: 0.3em;
+    width: 100%;
+    color: var(--text-color);
+  }
+  
+  .profile-icon{
+    float: left;
+    margin-top: 0.3em;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+
+  .reply-con .profile-icon{
+    float: left;
+    margin-top: 0.5em;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+
+  .comment-item{
+    display: flex;
+    gap: 1em;
+  }
+
+  .comment-con{
+    float: left;
+    width: 100%;
+    padding: 1em;
+    height: 30em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-height: 30em;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .comment{
+    width: 100%;
+    background-color: var(--text-bg-color);
+    border-radius: 10px;
+    padding: 0.3em;
+  }
+
+  .comment-action{
+    display: flex;
+    gap:0.5em;
+    margin-left: 0.2em;
+
+  }
+
+  .custom-dialog-content .postText{
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 3%; 
+    font-size: 22px; 
+    width: 100%; 
+    max-width: 100%;
+    color: var(--text-color);
+}
+  
+  .reply-con{
+    display: flex;
+    gap: 0.3em;
+  }

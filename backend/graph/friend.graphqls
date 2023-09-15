@@ -1,0 +1,46 @@
+type FriendRequest{
+    id: ID!
+    requesterID: String!
+    targetID: String!
+}
+
+input NewRequest{
+    requesterID: String!
+    targetID: String!
+}
+
+type RequestList{
+    requests: FriendRequest!
+    requester: UserNMutual!
+}
+
+type FriendList{
+    friend: User!
+    mutuals: [User!]!
+}
+
+type Friend{
+    id: ID!
+    userID: String!
+    friendID: String!
+}
+
+input NewFriend{
+    userID: String!
+    friendID: String!
+}
+
+
+extend type Query{
+    getAllRequest(targetID: ID!): [RequestList!]!
+    getAllFriend(userID: String!): [User!]!
+    getAllFriendWMutuals(userID: String!): [FriendList!]!
+}
+
+extend type Mutation{
+    createRequest(inputRequest: NewRequest!): FriendRequest!
+    createFriend(inputFriend: NewFriend!): Friend!
+    deleteRequest(id: ID!): String!
+    deleteRequestTarget(id: ID!): String!
+    deleteRequestRequester(id: ID!): String!
+}
