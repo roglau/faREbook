@@ -34,9 +34,12 @@ func main() {
 		Conns: Conns,
 	}}))
 
-	allowedOrigins := handlers.AllowedOrigins([]string{"http://127.0.0.1:5173"}) // Replace with your frontend URL
+	allowedOrigins := handlers.AllowedOrigins([]string{
+		"*",
+	})
+	
 	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"})
-	allowedHeaders := handlers.AllowedHeaders([]string{"Content-Type"})
+	allowedHeaders := handlers.AllowedHeaders([]string{"Content-Type", "Authorization"})
 
 	http.Handle("/", handlers.CORS(allowedOrigins, allowedMethods, allowedHeaders)(playground.Handler("GraphQL playground", "/query")))
 	http.Handle("/query", handlers.CORS(allowedOrigins, allowedMethods, allowedHeaders)(srv))
